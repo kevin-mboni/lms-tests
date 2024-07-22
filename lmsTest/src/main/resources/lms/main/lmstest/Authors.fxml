@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- FXML Document for Author Management -->
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox prefHeight="550" prefWidth="500" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lms.main.lmstest.controllers.AuthorController">
+
+    <!-- Title for Author Management -->
+    <Label prefHeight="27.0" prefWidth="151.0" style="-fx-font-size: 18px; -fx-font-weight: bold; margin-bottom: 10px;" text="Author Table" textFill="#9e3c3c" />
+
+    <!-- TableView to display authors -->
+    <TableView fx:id="authorTable" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="authorIdColumn" prefWidth="50" text="ID" />
+            <TableColumn fx:id="firstNameColumn" prefWidth="150" text="First Name" />
+            <TableColumn fx:id="lastNameColumn" prefWidth="150" text="Last Name" />
+            <TableColumn fx:id="emailColumn" prefWidth="150" text="Email" />
+        </columns>
+    </TableView>
+
+    <!-- Section for Add New Author -->
+    <Label style="-fx-font-size: 18px; -fx-font-weight: bold; margin-top: 20px;-fx-text-alignment: center" text="Register author" />
+
+    <!-- AnchorPane for input fields and buttons -->
+    <AnchorPane>
+        <VBox layoutX="20" layoutY="20" spacing="10">
+            <TextField fx:id="firstNameField" promptText="First Name" />
+            <TextField fx:id="lastNameField" promptText="Last Name" />
+            <TextField fx:id="emailField" promptText="Email" />
+        </VBox>
+        <HBox layoutX="20" layoutY="150" spacing="10" />
+         <Button layoutX="185.0" layoutY="25.0" onAction="#handleAddAuthor" text="Add" />
+         <Button layoutX="185.0" layoutY="68.0" onAction="#handleUpdateAuthor" text="Update" />
+         <Button layoutX="187.0" layoutY="103.0" onAction="#handleDeleteAuthor" text="Delete" textFill="#d31b1b" />
+    </AnchorPane>
+
+</VBox>

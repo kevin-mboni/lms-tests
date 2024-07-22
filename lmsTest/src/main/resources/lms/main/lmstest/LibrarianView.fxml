@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/22" fx:controller="lms.main.lmstest.controllers.LibrariansController">
+    <TableView fx:id="librarianTable" prefHeight="400.0" prefWidth="738.0" VBox.vgrow="SOMETIMES">
+        <columns>
+            <TableColumn fx:id="librarianIdColumn" maxWidth="800.0" prefWidth="100.0" text="ID" />
+            <TableColumn fx:id="librarianFirstNameColumn" maxWidth="800.0" prefWidth="100.0" text="First Name" />
+            <TableColumn fx:id="librarianLastNameColumn" maxWidth="800.0" prefWidth="100.0" text="Last Name" />
+            <TableColumn fx:id="librarianEmailColumn" maxWidth="800.0" prefWidth="100.0" text="Email" />
+        </columns>
+      <VBox.margin>
+         <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+      </VBox.margin>
+    </TableView>
+
+    <TextField fx:id="firstNameField" prefHeight="25.0" prefWidth="485.0" promptText="First Name" scaleX="0.0" scaleY="0.0" scaleZ="0.0" />
+    <TextField fx:id="lastNameField" promptText="Last Name">
+      <VBox.margin>
+         <Insets top="4.0" />
+      </VBox.margin></TextField>
+    <TextField fx:id="emailField" promptText="Email">
+      <padding>
+         <Insets top="5.0" />
+      </padding>
+      <VBox.margin>
+         <Insets top="4.0" />
+      </VBox.margin></TextField>
+    <TextField fx:id="usernameField" promptText="Username">
+      <padding>
+         <Insets bottom="2.0" left="2.0" right="2.0" top="4.0" />
+      </padding>
+      <VBox.margin>
+         <Insets top="4.0" />
+      </VBox.margin></TextField>
+    <TextField fx:id="passwordField" promptText="Password" />
+
+    <Button onAction="#handleAddLibrarian" text="Add">
+      <VBox.margin>
+         <Insets bottom="10.0" left="10.0" right="10.0" top="4.0" />
+      </VBox.margin></Button>
+    <Button onAction="#handleDeleteLibrarian" text="Delete" textFill="#e84e4e">
+      <VBox.margin>
+         <Insets bottom="10.0" left="20.0" right="20.0" top="5.0" />
+      </VBox.margin></Button>
+</VBox>

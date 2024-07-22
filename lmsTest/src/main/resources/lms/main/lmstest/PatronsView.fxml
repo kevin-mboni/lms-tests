@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="544.0" prefWidth="668.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/22" fx:controller="lms.main.lmstest.controllers.PatronRegistrationController">
+    <VBox prefHeight="499.0" prefWidth="556.0" spacing="10" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+        <padding>
+            <Insets bottom="20" left="20" right="20" top="20" />
+        </padding>
+      <Label text="Register new patron">
+         <font>
+            <Font name="System Bold Italic" size="14.0" />
+         </font>
+         <VBox.margin>
+            <Insets left="200.0" />
+         </VBox.margin>
+      </Label>
+        <Label text="First Name" />
+        <TextField fx:id="firstNameField" />
+        <Label text="Last Name" />
+        <TextField fx:id="lastNameField" />
+        <Label text="Email" />
+        <TextField fx:id="emailField" />
+        <Label text="Address" />
+        <TextField fx:id="addressField" />
+        <Label text="Phone" />
+        <TextField fx:id="phoneField" />
+        <Label text="Username" />
+        <TextField fx:id="usernameField" />
+        <Label text="Password" />
+        <PasswordField fx:id="passwordField" />
+        <Button alignment="CENTER" contentDisplay="CENTER" onAction="#handleRegister" text="Register">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <VBox.margin>
+            <Insets left="270.0" right="40.0" />
+         </VBox.margin></Button>
+    </VBox>
+</AnchorPane>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="CENTER" prefHeight="550" prefWidth="1000" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lms.main.lmstest.controllers.BookController">
+    <HBox spacing="40">
+        <Label style="-fx-font-size: 18px; -fx-font-weight: bold; margin-bottom: 10px;" text="Books" textFill="#807d7d" />
+
+        <TextField fx:id="searchField" promptText="Search" />
+        <Button onAction="#handleSearchBooks" text="Search" />
+    </HBox>
+    <TableView fx:id="bookTable" onMouseClicked="#handleTableClick">
+        <columns>
+            <TableColumn fx:id="bookIdColumn" prefWidth="200" text="Book ID" />
+            <TableColumn fx:id="titleColumn" prefWidth="200" text="Title" />
+            <TableColumn fx:id="publishedDateColumn" prefWidth="200" text="Published Date" />
+            <TableColumn fx:id="isbnColumn" prefWidth="200" text="ISBN" />
+            <TableColumn fx:id="availabilityColumn" prefWidth="200" text="Available" />
+        </columns>
+    </TableView>
+    <Label alignment="CENTER" contentDisplay="CENTER" style="-fx-font-size: 18px; -fx-font-weight: bold; margin-bottom: 10px;" text="Add New " />
+    <VBox layoutX="20" layoutY="20" spacing="10">
+    <TextField fx:id="titleField" prefHeight="55.0" prefWidth="1000.0" promptText="Title" />
+    <DatePicker fx:id="publishedDateField" promptText="Published Date" />
+    <TextField fx:id="isbnField" promptText="ISBN" />
+        <ComboBox fx:id="authorComboBox" promptText="Select Author" />
+        <Button fx:id="addButton" onAction="#handleAddBook" text="Add" />
+   
+   
+   
+       <HBox spacing="10">
+           <Button fx:id="updateButton" onAction="#handleUpdateBook" text="Update Book" />
+           <Button fx:id="deleteButton" onAction="#handleDeleteBook" text="Delete" textFill="#b25555" />
+       </HBox>
+    </VBox>
+</VBox>

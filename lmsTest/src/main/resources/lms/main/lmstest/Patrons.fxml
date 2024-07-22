@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox prefHeight="483.0" prefWidth="799.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/22" fx:controller="lms.main.lmstest.controllers.PatronController">
+    <!-- Patron ID Field and Borrow/Search Buttons -->
+    <HBox spacing="10">
+        <TextField fx:id="patronIdField" promptText="Enter your Patron ID" visible="false" />
+        <Button contentDisplay="CENTER" onAction="#handleBorrowBook" text="Borrow Selected Book">
+         <HBox.margin>
+            <Insets right="50.0" />
+         </HBox.margin></Button>
+        <TextField fx:id="searchField" promptText="Search" />
+        <Button onAction="#handleSearchBooks" text="Search">
+         <HBox.margin>
+            <Insets left="60.0" right="40.0" />
+         </HBox.margin></Button>
+      <VBox.margin>
+         <Insets bottom="5.0" left="5.0" right="5.0" />
+      </VBox.margin>
+    </HBox>
+
+    <!-- Books Table -->
+    <TableView fx:id="booksTable" prefHeight="400">
+        <columns>
+            <TableColumn fx:id="bookIdColumn" prefWidth="100" text="Book ID">
+                <cellValueFactory>
+                    <PropertyValueFactory property="id" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="bookTitleColumn" prefWidth="200" text="Title">
+                <cellValueFactory>
+                    <PropertyValueFactory property="title" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="bookPublishedDateColumn" prefWidth="150" text="Published Date">
+                <cellValueFactory>
+                    <PropertyValueFactory property="published_date" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="bookIsbnColumn" prefWidth="150" text="ISBN">
+                <cellValueFactory>
+                    <PropertyValueFactory property="isbn" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="bookAvailabilityColumn" prefWidth="100" text="Availability">
+                <cellValueFactory>
+                    <PropertyValueFactory property="availability" />
+                </cellValueFactory>
+            </TableColumn>
+        </columns>
+      <padding>
+         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+      </padding>
+    </TableView>
+
+    <!-- Transactions Table -->
+    <TableView fx:id="transactionsTable" prefHeight="200">
+        <columns>
+            <TableColumn fx:id="transactionIdColumn" prefWidth="100" text="Transaction ID">
+                <cellValueFactory>
+                    <PropertyValueFactory property="id" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="bookTitleTransactionColumn" prefWidth="150" text="Book Title">
+                <cellValueFactory>
+                    <PropertyValueFactory property="book_title" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="patronFirstNameColumn" prefWidth="100" text="Patron First Name">
+                <cellValueFactory>
+                    <PropertyValueFactory property="patron_firstName" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="patronLastNameColumn" prefWidth="100" text="Patron Last Name">
+                <cellValueFactory>
+                    <PropertyValueFactory property="patron_lastName" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="transactionDateColumn" prefWidth="150" text="Transaction Date">
+                <cellValueFactory>
+                    <PropertyValueFactory property="transaction_date" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="dueDateColumn" prefWidth="150" text="Due Date">
+                <cellValueFactory>
+                    <PropertyValueFactory property="due_date" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="returnedColumn" prefWidth="100" text="Returned">
+                <cellValueFactory>
+                    <PropertyValueFactory property="returned" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="actionsColumn" prefWidth="150" text="Actions" />
+        </columns>
+    </TableView>
+   <padding>
+      <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+   </padding>
+</VBox>
