@@ -14,31 +14,31 @@ import java.util.LinkedList;
 public class AuthorController {
 
     @FXML
-    private TableView<Authors> authorTable;
+     TableView<Authors> authorTable;
     @FXML
-    private TableColumn<Authors, Integer> authorIdColumn;
+     TableColumn<Authors, Integer> authorIdColumn;
     @FXML
-    private TableColumn<Authors, String> firstNameColumn;
+     TableColumn<Authors, String> firstNameColumn;
     @FXML
-    private TableColumn<Authors, String> lastNameColumn;
+     TableColumn<Authors, String> lastNameColumn;
     @FXML
-    private TableColumn<Authors, String> emailColumn;
+     TableColumn<Authors, String> emailColumn;
 
     @FXML
-    private TextField firstNameField;
+     TextField firstNameField;
     @FXML
-    private TextField lastNameField;
+     TextField lastNameField;
     @FXML
-    private TextField emailField;
+     TextField emailField;
 
     @FXML
-    private Button addButton;
+     Button addButton;
     @FXML
-    private Button updateButton;
+     Button updateButton;
     @FXML
-    private Button deleteButton;
+     Button deleteButton;
 
-    private AuthorsModel authorsModel;
+     AuthorsModel authorsModel;
 
     public AuthorController() throws SQLException {
         authorsModel = new AuthorsModel();
@@ -65,13 +65,13 @@ public class AuthorController {
                 (observable, oldValue, newValue) -> showAuthorDetails(newValue));
     }
 
-    private void loadAuthors() throws SQLException {
+    public void loadAuthors() throws SQLException {
         LinkedList<Authors> authorList = authorsModel.getAuthors();
         ObservableList<Authors> authors = FXCollections.observableArrayList(authorList);
         authorTable.setItems(authors);
     }
 
-    private void showAuthorDetails(Authors author) {
+    public void showAuthorDetails(Authors author) {
         if (author != null) {
             firstNameField.setText(author.getFirst_name());
             lastNameField.setText(author.getLast_name());
@@ -82,7 +82,7 @@ public class AuthorController {
     }
 
     @FXML
-    private void handleAddAuthor() {
+    public void handleAddAuthor() {
         String firstName = firstNameField.getText();
         String lastName = lastNameField.getText();
         String email = emailField.getText();
@@ -106,7 +106,7 @@ public class AuthorController {
     }
 
     @FXML
-    private void handleUpdateAuthor() {
+    public void handleUpdateAuthor() {
         Authors selectedAuthor = authorTable.getSelectionModel().getSelectedItem();
         if (selectedAuthor != null) {
             selectedAuthor.setFirst_name(firstNameField.getText());
@@ -127,7 +127,7 @@ public class AuthorController {
     }
 
     @FXML
-    private void handleDeleteAuthor() {
+    public void handleDeleteAuthor() {
         Authors selectedAuthor = authorTable.getSelectionModel().getSelectedItem();
         if (selectedAuthor != null) {
             try {
@@ -143,13 +143,13 @@ public class AuthorController {
         }
     }
 
-    private void clearFields() {
+    public void clearFields() {
         firstNameField.clear();
         lastNameField.clear();
         emailField.clear();
     }
 
-    private void showAlert(String message) {
+    public void showAlert(String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error");
         alert.setHeaderText(null);

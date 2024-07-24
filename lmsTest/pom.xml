@@ -19,12 +19,12 @@
     <dependency>
       <groupId>org.openjfx</groupId>
       <artifactId>javafx-controls</artifactId>
-      <version>22-ea+11</version>
+      <version>17.0.2</version>
     </dependency>
     <dependency>
       <groupId>org.openjfx</groupId>
       <artifactId>javafx-fxml</artifactId>
-      <version>22-ea+11</version>
+      <version>17.0.2</version>
     </dependency>
     <dependency>
       <groupId>org.controlsfx</groupId>
@@ -62,12 +62,17 @@
     </dependency>
 
     <dependency>
-      <groupId>org.testfx</groupId>
-      <artifactId>testfx-junit5</artifactId>
-      <version>4.0.16-alpha</version>
-      <scope>test</scope>
+      <groupId>org.postgresql</groupId>
+      <artifactId>postgresql</artifactId>
+      <version>42.7.2</version>
     </dependency>
 
+    <dependency>
+      <groupId>org.testfx</groupId>
+      <artifactId>testfx-junit5</artifactId>
+      <version>4.0.15-alpha</version> <!-- Update to the latest stable version -->
+      <scope>test</scope>
+    </dependency>
 
   </dependencies>
 

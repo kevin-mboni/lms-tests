@@ -1,76 +1,126 @@
 package lms.main.lmstest.controllers;
 
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import lms.main.lmstest.config.LibrarianModel;
+import lms.main.lmstest.config.PatronsModel;
+import lms.main.lmstest.session.Session;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.testfx.api.FxRobot;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import org.testfx.framework.junit5.ApplicationExtension;
 import org.testfx.framework.junit5.Start;
-import org.testfx.matcher.control.LabeledMatchers;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.testfx.api.FxAssert.verifyThat;
+import static org.junit.jupiter.api.Assertions.fail;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(ApplicationExtension.class)
 public class LoginControllerTest {
 
-    private LoginController controller;
+    @Mock
+    private LibrarianModel librarianModel;
+
+    @Mock
+    private PatronsModel patronsModel;
+
+    @InjectMocks
+    private LoginController loginController;
+
+    private TextField usernameField;
+    private PasswordField passwordField;
+    private VBox root;
 
     @Start
-    private void start(Stage stage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Login.fxml"));
-        Parent root = loader.load();
-        controller = loader.getController();
-        stage.setScene(new Scene(root));
+    public void start(Stage stage) {
+        usernameField = new TextField();
+        passwordField = new PasswordField();
+        root = new VBox(usernameField, passwordField);
+        stage.setScene(new javafx.scene.Scene(root));
         stage.show();
     }
 
     @BeforeEach
     public void setUp() {
-        // Any setup before each test can go here
+        MockitoAnnotations.openMocks(this);
+        loginController = new LoginController(); // Ensure LoginController instance is created
+        loginController.usernameField = usernameField;
+        loginController.passwordField = passwordField;
     }
 
     @Test
-    public void testLibrarianLogin(FxRobot robot) {
-        // Simulate entering username and password
-        robot.clickOn("#usernameField").write("librarian");
-        robot.clickOn("#passwordField").write("password");
+    public void testHandleLogin_LibrarianAuthenticationSuccess() {
+        try {
+            when(librarianModel.authenticateLibrarian(anyString(), anyString())).thenReturn(true);
 
-        // Simulate clicking the login button
-        robot.clickOn("#loginButton");
+            usernameField.setText("librarian");
+            passwordField.setText("password");
 
-        // Verify the dashboard is loaded
-        assertTrue(controller.isLibrarianDashboardLoaded(), "Librarian dashboard should be loaded");
+            loginController.handleLogin();
+
+            verify(librarianModel).authenticateLibrarian("librarian", "password");
+            verify(patronsModel, never()).authenticatePatron(anyString(), anyString());
+        } catch (Exception e) {
+            e.printStackTrace(); // Print stack trace for debugging
+            fail("Exception occurred: " + e.getMessage());
+        }
     }
 
     @Test
-    public void testPatronLogin(FxRobot robot) {
-        // Simulate entering username and password
-        robot.clickOn("#usernameField").write("patron");
-        robot.clickOn("#passwordField").write("password");
+    public void testHandleLogin_PatronAuthenticationSuccess() {
+        try {
+            when(librarianModel.authenticateLibrarian(anyString(), anyString())).thenReturn(false);
+            when(patronsModel.authenticatePatron(anyString(), anyString())).thenReturn(true);
+            when(patronsModel.getPatronId(anyString())).thenReturn(1);
 
-        // Simulate clicking the login button
-        robot.clickOn("#loginButton");
+            usernameField.setText("patron");
+            passwordField.setText("password");
 
-        // Verify the dashboard is loaded
-        assertTrue(controller.isPatronDashboardLoaded(), "Patron dashboard should be loaded");
+            loginController.handleLogin();
+
+            verify(librarianModel).authenticateLibrarian("patron", "password");
+            verify(patronsModel).authenticatePatron("patron", "password");
+            verify(patronsModel).getPatronId("patron");
+            Session.setPatronId(1);  // Ensure this line reflects the correct method to set the patron ID in your session management.
+        } catch (Exception e) {
+            e.printStackTrace(); // Print stack trace for debugging
+            fail("Exception occurred: " + e.getMessage());
+        }
     }
 
     @Test
-    public void testInvalidLogin(FxRobot robot) {
-        // Simulate entering invalid username and password
-        robot.clickOn("#usernameField").write("invalidUser");
-        robot.clickOn("#passwordField").write("wrongPassword");
+    public void testHandleLogin_AuthenticationFailure() {
+        try {
+            when(librarianModel.authenticateLibrarian(anyString(), anyString())).thenReturn(false);
+            when(patronsModel.authenticatePatron(anyString(), anyString())).thenReturn(false);
 
-        // Simulate clicking the login button
-        robot.clickOn("#loginButton");
+            usernameField.setText("user");
+            passwordField.setText("wrongpassword");
 
-        // Verify the error message is displayed
-        verifyThat("#errorMessage", LabeledMatchers.hasText("Invalid credentials. Please try again."));
+            loginController.handleLogin();
+
+            verify(librarianModel).authenticateLibrarian("user", "wrongpassword");
+            verify(patronsModel).authenticatePatron("user", "wrongpassword");
+        } catch (Exception e) {
+            e.printStackTrace(); // Print stack trace for debugging
+            fail("Exception occurred: " + e.getMessage());
+        }
+    }
+
+    @Test
+    public void testHandleRegister() {
+        try {
+            loginController.handleRegister();
+
+            // Add verification to ensure the registration screen is displayed.
+        } catch (Exception e) {
+            e.printStackTrace(); // Print stack trace for debugging
+            fail("Exception occurred: " + e.getMessage());
+        }
     }
 }

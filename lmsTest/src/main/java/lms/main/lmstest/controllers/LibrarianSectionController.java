@@ -30,7 +30,7 @@ public class LibrarianSectionController {
 
     private void loadBookView() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/BookView.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/lms/main/lmstest/BookView.fxml"));
             VBox bookView = loader.load();
             bookViewContainer.getChildren().add(bookView);
         } catch (IOException e) {
@@ -40,7 +40,7 @@ public class LibrarianSectionController {
 
     private void loadAuthorView() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Authors.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/lms/main/lmstest/Authors.fxml"));
             VBox authorView = loader.load();
             authorViewContainer.getChildren().add(authorView);
         } catch (IOException e) {
@@ -50,7 +50,7 @@ public class LibrarianSectionController {
 
     private void loadTransactionView() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/TransactionView.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/lms/main/lmstest/TransactionView.fxml"));
             VBox transactionView = loader.load();
             transactionViewContainer.getChildren().add(transactionView);
         } catch (IOException e) {
@@ -59,7 +59,7 @@ public class LibrarianSectionController {
     }
     private void loadPatronView() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/PatronsInfo.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/lms/main/lmstest/PatronsInfo.fxml"));
             VBox patronView = loader.load();
             patronViewContainer.getChildren().add(patronView);
         } catch (IOException e) {

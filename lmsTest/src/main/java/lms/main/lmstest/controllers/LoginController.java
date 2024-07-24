@@ -20,15 +20,15 @@ import java.sql.SQLException;
 public class LoginController {
 
     @FXML
-    private TextField usernameField;
+    TextField usernameField;
     @FXML
-    private PasswordField passwordField;
+    PasswordField passwordField;
     @FXML
     private Label errorMessage;
 
     // Method to handle login action
     @FXML
-    private void handleLogin() throws SQLException {
+     void handleLogin() throws SQLException {
         String username = usernameField.getText();
         String password = passwordField.getText();
 
@@ -36,7 +36,7 @@ public class LoginController {
         LibrarianModel librarianModel = new LibrarianModel();
         if (librarianModel.authenticateLibrarian(username, password)) {
 
-            openDashboard("/LibrarianSection.fxml");
+            openDashboard("/lms/main/lmstest/LibrarianSection.fxml");
         }
         // Authenticate patron
         else {
@@ -45,7 +45,7 @@ public class LoginController {
                 // Set patron ID into session
                 int patronId = patronsModel.getPatronId(username); // Adjust as per your implementation
                 Session.setPatronId(patronId); // Example method to set patron ID in session
-                openDashboard("/Patrons.fxml");
+                openDashboard("/lms/main/lmstest/Patrons.fxml");
             } else {
                 showAlert(Alert.AlertType.ERROR, "Error", "Invalid credentials. Please try again.");
             }
@@ -53,7 +53,7 @@ public class LoginController {
     }
 
     // Method to open dashboard
-    private void openDashboard(String dashboardFXML) {
+     void openDashboard(String dashboardFXML) {
         try {
             System.out.println("Loading FXML: " + dashboardFXML);
             FXMLLoader loader = new FXMLLoader(getClass().getResource(dashboardFXML));
@@ -75,7 +75,7 @@ public class LoginController {
 
         }
     }
-    private void showAlert(Alert.AlertType alertType, String title, String message) {
+     void showAlert(Alert.AlertType alertType, String title, String message) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);
         alert.setHeaderText(null);
@@ -83,9 +83,9 @@ public class LoginController {
         alert.showAndWait();
     }
     @FXML
-    private void handleRegister() {
+     void handleRegister() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/PatronsView.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/lms/main/lmstest/PatronsView.fxml"));
             Parent root = loader.load();
             Stage stage = new Stage();
             stage.setTitle("Register");
