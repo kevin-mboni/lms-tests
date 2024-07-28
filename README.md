@@ -4,7 +4,7 @@ This repository provides the test suite for the Library Management System (LMS).
 
 ### Loom video
 ``` bash
-https://www.loom.com/share/e75db622c5124d4d98866c481beae
+https://www.loom.com/share/7df3342627f44e55ad82791075a0c888
 ```
 
 ## Testing Features
