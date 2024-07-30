@@ -142,7 +142,7 @@
         <groupId>org.openjfx</groupId>
         <artifactId>javafx-maven-plugin</artifactId>
         <configuration>
-          <mainClass>your.main.ClassName</mainClass> <!-- Update with your main class -->
+          <mainClass>Main</mainClass>
         </configuration>
       </plugin>
 
